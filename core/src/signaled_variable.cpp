@@ -12,13 +12,16 @@ namespace cpput {
 
     void signaled_variable::wait(std::unique_lock<std::mutex>& lock) {
         this->conditional_variable.wait(lock);
+        this->signaled_state.store(false);
     }
 
     void signaled_variable::wait_for_signal(std::unique_lock<std::mutex>& lock) {
-        if (this->signaled_state.load()) {
+        bool expected = true;
+        if (this->signaled_state.compare_exchange_strong(expected, false)) {
             return;
         }
         this->conditional_variable.wait(lock);
+        this->signaled_state.store(false);
     }
 
     bool signaled_variable::is_signaled() {
