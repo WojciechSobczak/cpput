@@ -1,13 +1,11 @@
 #include <iostream>
-#include <cpput/signaled_variable.hpp>
+#include <chrono>
+#include <cpput/defer.hpp>
 
 using namespace std::chrono_literals;
 
-
 int main() {
-    cpput::signaled_variable signaledVar;
-    signaledVar.wait_for_signal();
-    signaledVar.signal();
-
-    return 1;
+    cpput::defer def([]() {
+        std::cout << "DEATH\n";
+    });
 }
