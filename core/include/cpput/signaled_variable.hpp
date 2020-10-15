@@ -57,14 +57,22 @@ namespace cpput {
         if (this->signaled_state.compare_exchange_strong(expected, false)) {
             return;
         }
-        this->conditional_variable.wait_for(lock, time);
-        this->signaled_state.store(false);
+        if (std::cv_status::timeout == this->conditional_variable.wait_for(lock, time)) {
+            return false;
+        } else {
+            this->signaled_state.store(false);
+            return true;
+        }
     }
 
     template <typename Rep, typename Period>
     bool signaled_variable_def::wait_for(std::unique_lock<std::mutex>& lock, std::chrono::duration<Rep, Period> time) noexcept {
-        this->conditional_variable.wait_for(lock, time);
-        this->signaled_state.store(false);
+        if (std::cv_status::timeout == this->conditional_variable.wait_for(lock, time)) {
+            return false;
+        } else {
+            this->signaled_state.store(false);
+            return true;
+        }
     }
 
     template <typename Rep, typename Period>
