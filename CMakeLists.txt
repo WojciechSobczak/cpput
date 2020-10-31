@@ -8,7 +8,7 @@ add_library(${PROJECT_NAME} STATIC
     "src/defer.hpp" "src/defer.cpp"
     "src/defer_throw.hpp" "src/defer_throw.cpp" 
     "src/dummy_var_macro.hpp"
-)
+ "src/cpput.hpp")
 
 if (DEV_BUILD)
     add_executable("test" "main.cpp")
