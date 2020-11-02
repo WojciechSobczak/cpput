@@ -1,11 +1,11 @@
 #include "synchronized.hpp"
 
-
 namespace cpput {
 
-    void synchronized(std::mutex& mutex, std::function<void()> func) {
-        std::lock_guard lock(mutex);
-        func();
+    template <typename Callable, typename ... Args>
+    void synchronized(std::mutex& mutex, Callable func, Args&& ... args) {
+        const std::lock_guard lock(mutex);
+        func(args...);
     }
 
 }
