@@ -1,4 +1,4 @@
-#include "signaled_variable.hpp"
+#include <cpput/signaled_variable.hpp>
 
 namespace cpput {
 

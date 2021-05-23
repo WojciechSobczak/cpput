@@ -9,7 +9,6 @@ namespace cpput {
     protected:
         std::atomic<bool> signaled_state;
         std::condition_variable condition_var;
-
     public:
         void wait(std::unique_lock<std::mutex>& lock) noexcept;
         void wait_for_signal(std::unique_lock<std::mutex>& lock) noexcept;
