@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 add_library(${PROJECT_NAME} STATIC
     "src/signaled_variable.cpp"
     "src/signaled_variable_def.cpp"
+    "src/string.cpp"
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE "./include/")

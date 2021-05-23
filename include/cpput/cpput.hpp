@@ -6,3 +6,4 @@
 #include "signaled_variable_def.hpp"
 #include "signaled_variable.hpp"
 #include "synchronized.hpp"
+#include "string.hpp"
