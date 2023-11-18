@@ -1,0 +1,8 @@
+set(cpput_VERSION 0.0.0)
+
+@PACKAGE_INIT@
+
+set_and_check(cpput_INCLUDE_DIR "@PACKAGE_INCLUDE_INSTALL_DIR@")
+set_and_check(cpput_LIBRARIES "@PACKAGE_BINARIES_INSTALL_DIR@")
+
+check_required_components(Foo)

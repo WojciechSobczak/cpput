@@ -1,4 +1,4 @@
-#include <cpput/string.hpp>
+#include "string.hpp"
 #include <algorithm>
 #include <cwctype>
 
@@ -7,6 +7,7 @@ namespace cpput {
     void to_lower_case(std::string& string) noexcept {
         std::transform(string.begin(), string.end(), string.begin(), std::tolower);
     }
+
     void to_upper_case(std::string& string) noexcept {
         std::transform(string.begin(), string.end(), string.begin(), std::toupper);
     }
