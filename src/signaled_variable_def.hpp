@@ -36,11 +36,7 @@ namespace cpput {
         if (this->signaled_state.compare_exchange_strong(expected, false)) {
             return false;
         }
-        if (std::cv_status::timeout == this->condition_var.wait_for(lock, time)) {
-            return true;
-        } else {
-            return false;
-        }
+        return std::cv_status::timeout == this->condition_var.wait_for(lock, time);
     }
 
 
@@ -48,16 +44,14 @@ namespace cpput {
     bool signaled_variable_def::wait_for_signal_for(std::unique_lock<std::mutex>& lock, std::chrono::duration<Rep, Period> time) noexcept {
         if (!this->wait_for_signal_for_no_reset(lock, time)) {
             this->signaled_state.store(false);
+            return false;
         }
+        return true;
     }
 
     template <typename Rep, typename Period>
     bool signaled_variable_def::wait_for_no_reset(std::unique_lock<std::mutex>& lock, std::chrono::duration<Rep, Period> time) noexcept {
-        if (std::cv_status::timeout == this->condition_var.wait_for(lock, time)) {
-            return true;
-        } else {
-            return false;
-        }
+        return std::cv_status::timeout == this->condition_var.wait_for(lock, time);
     }
 
     template <typename Rep, typename Period>
@@ -66,6 +60,7 @@ namespace cpput {
             this->signaled_state.store(false);
             return false;
         }
+        return true;
     }
 
 }
