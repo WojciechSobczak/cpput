@@ -2,5 +2,6 @@
 /out
 main.cpp
 CMakeSettings.json
-nothing
 /cmake
+.workspace
+.idea
