@@ -1,7 +1,8 @@
-/.vs
-/out
-main.cpp
-CMakeSettings.json
-/cmake
+__pycache__
+.mypy_cache
 .workspace
+.vscode
 .idea
+.vs
+.env
+CMakeUserPresets.json

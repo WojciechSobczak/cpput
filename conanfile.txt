@@ -1,0 +1,9 @@
+[requires]
+ctre/3.10.0
+
+[generators]
+CMakeDeps
+CMakeToolchain
+
+[layout]
+cmake_layout
